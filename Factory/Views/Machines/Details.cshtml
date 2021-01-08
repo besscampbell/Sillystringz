@@ -12,7 +12,7 @@
   <div class="col-6">
     @if(Model.Engineers.Count == 0)
     {
-      <h2>No Engineers are Licensced to work on this Machine</h2>
+      <h2>No Engineers are Licensed to work on this Machine</h2>
       <br/>
       <h3>@Html.ActionLink("+ first Engineer", "AddEngineer", "Engineers", new { id = Model.MachineId })</h3>
     }
@@ -22,6 +22,11 @@
       @foreach(var join in Model.Engineers)
       {
         <h3>@Html.ActionLink($"{join.Engineer.Name}", "Details", "Engineers", new { id = join.Engineer.EngineerId} )</h3>
+        @using(Html.BeginForm("DeleteEngineer", "Machines"))
+        {
+          @Html.Hidden("joinId", @join.EngineerMachineId)
+          <input type="submit" value="Remove" class="btn btn-info">
+        }
       }
       <br/>
       <h3>@Html.ActionLink("+ another Engineer", "AddEngineer", new { id = Model.MachineId })</h3>

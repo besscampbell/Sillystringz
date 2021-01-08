@@ -15,7 +15,7 @@
     }
     else
     {
-      <h3>Engineers:</h3>
+      <h3>@Html.ActionLink("Engineers:", "Index", "Engineers")</h3>
       <br/>
       @foreach(Engineer engineer in Model)
       {
@@ -25,7 +25,6 @@
       <h4>@Html.ActionLink("+ Engineer", "Create", "Engineers")</h4>
 
     }
-    @* <h2>@Html.ActionLink("+ new Engineer", "Create", "Engineers")</h2> *@
   </div>
   <div class="container col-6">
       @if (@ViewBag.Machines.Count == 0)
@@ -36,7 +35,7 @@
       }
       else
       {
-        <h3>Machines:</h3>
+        <h3>@Html.ActionLink("Machines:", "Index", "Machines")</h3>
         <br/>
         @foreach(Machine machine in @ViewBag.Machines)
         {
@@ -46,6 +45,5 @@
         <h4>@Html.ActionLink("+ Machine", "Create", "Machines")</h4>
 
       }
-    @* <h2>@Html.ActionLink("+ new Machine", "Create", "Machines")</h2> *@
   </div>
 </div>
