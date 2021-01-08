@@ -8,6 +8,8 @@
 <div class="container">
   @using(Html.BeginForm())
   {
+    @Html.HiddenFor(model => model.EngineerId)
+    
     <div class="form-group">
       @Html.LabelFor(model => model.Name)
       @Html.TextBoxFor(model => model.Name)
