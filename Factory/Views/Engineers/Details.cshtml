@@ -21,7 +21,12 @@
       <h2>Is Licensed to work on:</h2>
       @foreach(var join in Model.Machines)
       {
-        <h3>@Html.ActionLink($"{join.Machine.Name}", "Details", "Machines", new { id = join.Machine.MachineId} )</h3>
+        <h3>@Html.ActionLink($"{join.Machine.Name}", "Details", "Machines", new { id = join.Machine.MachineId} )</h3> 
+        @using(Html.BeginForm("DeleteMachine", "Engineers"))
+        {
+          @Html.Hidden("joinId", @join.EngineerMachineId)
+          <input type="submit" value="Remove" class="btn btn-info">
+        }
       }
       <br/>
       <h3>@Html.ActionLink("+ another Licensure", "AddMachine", new { id = Model.EngineerId })</h3>
