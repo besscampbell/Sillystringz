@@ -1,0 +1,17 @@
+@{
+  Layout = "_Layout";
+}
+
+@model Factory.Models.Machine
+
+<h2>New Machine Form:</h2>
+<div class="container">
+  @using(Html.BeginForm())
+  {
+    <div class="form-group">
+      @Html.LabelFor(model => model.Name)
+      @Html.TextBoxFor(model => model.Name)
+    </div>
+  <input type="submit" value="+ Machine" class="btn btn-primary">
+  }
+</div>
