@@ -7,24 +7,23 @@
 
 
 
-  <div class="container col-5">
-    @if (Model.Count == 0)
+<div class="container col-5">
+  @if (Model.Count == 0)
+  {
+    <h4>You have no machines in the system.</h4>
+    <br/>
+    <h4>@Html.ActionLink("+ your first Machine", "Create", "Machines")</h4>
+  }
+  else
+  {
+    <h3>Machines:</h3>
+    <br/>
+    @foreach(Machine machine in Model)
     {
-      <h4>You have no machines in the system.</h4>
-      <br/>
-      <h4>@Html.ActionLink("+ your first Machine", "Create", "Machines")</h4>
+      <h4>@Html.ActionLink($"{machine.Name}", "Details", "Machines", new { id = machine.MachineId})</h4>
     }
-    else
-    {
-      <h3>Machines:</h3>
-      <br/>
-      @foreach(Machine machine in Model)
-      {
-        <h4>@Html.ActionLink($"{machine.Name}", "Details", "Machines", new { id = machine.MachineId})</h4>
-      }
-      <br/>
-      <h4>@Html.ActionLink("+ Machine", "Create", "Machines")</h4>
+    <br/>
+    <h4>@Html.ActionLink("+ Machine", "Create", "Machines")</h4>
 
-    }
-  </div>
+  }
 </div>
