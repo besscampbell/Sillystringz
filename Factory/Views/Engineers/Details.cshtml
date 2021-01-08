@@ -1,0 +1,38 @@
+@{
+  Layout = "_Layout";
+}
+
+@model Factory.Models.Engineer
+
+
+<div class="row">
+  <div class="col-6">
+    <h2>Engineer: @Model.Name</h2>
+  </div>
+  <div class="col-6">
+    @if(Model.Machines.Count == 0)
+    {
+      <h2>Not Licensced to work on any Machines</h2>
+      <br/>
+      <h3>@Html.ActionLink("+ first Licensure", "AddMachine", "Machines", new { id = Model.EngineerId })</h3>
+    }
+    else
+    {
+      <h2>Is Licensed to work on:</h2>
+      @foreach(var join in Model.Machines)
+      {
+        <h3>@Html.ActionLink($"{join.Machine.Name}", "Details", "Machines", new { id = join.Machine.MachineId} )</h3>
+      }
+      <br/>
+      <h3>@Html.ActionLink("+ another Licensure", "AddMachine", new { id = Model.EngineerId })</h3>
+    }
+</div>
+</div>
+  <div class="row">
+    <div class="col-2"></div>
+    <div class="col-8">
+      <br/>
+      <h3>@Html.ActionLink("Update Name", "Edit", new { id = Model.EngineerId}) | @Html.ActionLink("Delete Engineer", "Delete", new { id = Model.EngineerId })</h3>
+    </div>
+    <div class="col-2"></div>
+  </div>
