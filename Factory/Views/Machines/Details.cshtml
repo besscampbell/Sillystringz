@@ -18,7 +18,7 @@
     }
     else
     {
-      <h2>Licensed to work on:</h2>
+      <h2>Licensed to be worked on by:</h2>
       @foreach(var join in Model.Engineers)
       {
         <h3>@Html.ActionLink($"{join.Engineer.Name}", "Details", "Engineers", new { id = join.Engineer.EngineerId} )</h3>

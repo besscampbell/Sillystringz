@@ -1,0 +1,14 @@
+@{
+  Layout = "_Layout";
+}
+
+@model Factory.Models.Machine
+
+<h3>Are you sure you want to permanently delete @Model.Name from the factory machine roster?</h3>
+<br/>
+@using(Html.BeginForm())
+{
+  <input type="submit" value="Delete" class="btn btn-danger">
+}
+<br/>
+<h3>@Html.ActionLink($"Return to the info page for {Model.Name}", "Details", new { id = Model.MachineId})</h3>
