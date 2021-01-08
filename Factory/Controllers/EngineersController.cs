@@ -80,7 +80,6 @@ namespace Factory.Controllers
             _db.EngineerMachine.Add(new EngineerMachine() { MachineId = MachineId, EngineerId = engineer.EngineerId });
           }
       }
-      // _db.Entry(engineer).State = EntityState.Modified;
       _db.SaveChanges();
       return RedirectToAction("Index");
     }
