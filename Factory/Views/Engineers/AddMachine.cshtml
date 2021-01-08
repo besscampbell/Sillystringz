@@ -1,0 +1,20 @@
+@{
+  Layout = "_Layout";
+}
+
+@model Factory.Models.Engineer
+
+<h2>Which machine is @Model.Name now licensed to work on?</h2>
+
+@using(Html.BeginForm())
+{
+  @Html.HiddenFor(model => model.EngineerId)
+  @Html.HiddenFor(model => model.Name)
+
+  @Html.Label("Name")
+  @Html.DropDownList("MachineId")
+
+  <input type="submit" value="Save" class="btn btn-success">
+}
+<br/>
+<h3>@Html.ActionLink($"Return to {Model.Name}'s info page", "Details", new { id = Model.EngineerId})</h3>
