@@ -17,8 +17,9 @@
  * As the factory manager, I need to be able to add or remove machines that a specific engineer is licensed to repair. I also need to be able to modify this relationship from the other side, and add or remove engineers from a specific machine.
  * I should be able to navigate to a splash page that lists all engineers and machines. Users should be able to click on an individual engineer or machine to see all the engineers/machines that belong to it.
 
+## Preview
 
-![Splash Page]()
+![Splash Page](./ReadMeAssets/splash_factory.png)
 
 ## Prerequisites
 
@@ -71,12 +72,48 @@
 
 #### Import Database with SQL Schema
 * Open MySql Workbench and paste the following Schema Create Statement into a new SQL tab for executing queries.
-```
 
+```
+CREATE DATABASE `bess_campbell_factory` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */;
+USE `bess_campbell_factory`;
+
+DROP TABLE IF EXISTS `__EFMigrationsHistory`;
+CREATE TABLE `__EFMigrationsHistory` (
+  `MigrationId` varchar(95) NOT NULL,
+  `ProductVersion` varchar(32) NOT NULL,
+  PRIMARY KEY (`MigrationId`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+DROP TABLE IF EXISTS `EngineerMachine`;
+CREATE TABLE `EngineerMachine` (
+  `EngineerMachineId` int(11) NOT NULL AUTO_INCREMENT,
+  `EngineerId` int(11) NOT NULL,
+  `MachineId` int(11) NOT NULL,
+  PRIMARY KEY (`EngineerMachineId`),
+  KEY `IX_EngineerMachine_EngineerId` (`EngineerId`),
+  KEY `IX_EngineerMachine_MachineId` (`MachineId`),
+  CONSTRAINT `FK_EngineerMachine_Engineers_EngineerId` FOREIGN KEY (`EngineerId`) REFERENCES `engineers` (`EngineerId`) ON DELETE CASCADE,
+  CONSTRAINT `FK_EngineerMachine_Machines_MachineId` FOREIGN KEY (`MachineId`) REFERENCES `machines` (`MachineId`) ON DELETE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+DROP TABLE IF EXISTS `Engineers`;
+CREATE TABLE `Engineers` (
+  `EngineerId` int(11) NOT NULL AUTO_INCREMENT,
+  `Name` longtext,
+  PRIMARY KEY (`EngineerId`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+DROP TABLE IF EXISTS `Machines`;
+CREATE TABLE `Machines` (
+  `MachineId` int(11) NOT NULL AUTO_INCREMENT,
+  `Name` longtext,
+  PRIMARY KEY (`MachineId`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 ```
 #### SQL Database Design
-![MySQL Designer]()
+
+![MySQL Designer](./ReadMeAssets/FactorySQLDesign.png)
 
 
 ## Technologies Used
@@ -106,4 +143,4 @@ Feel free to contact <bess.k.campbell@gmail.com>
 
 ## License
 
-MIT_ Copyright (c) 2020 *_Bess Campbell_*
+_MIT_ Copyright (c) 2020 *_Bess Campbell_*

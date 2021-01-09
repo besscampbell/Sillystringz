@@ -1,3 +1,5 @@
 body {
   text-align: center;
+  background-image: url(../img/confetti.jpg);
+  background-size: cover;
 }
